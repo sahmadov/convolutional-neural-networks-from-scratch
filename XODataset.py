@@ -10,7 +10,7 @@ class XODataset(Dataset):
         self.transform = transform
 
         self.labels = pd.read_csv(labels_file, sep=" ", header=None, names=["filename", "label"])
-        self.labels["label"] = self.labels["label"].map({"X": 1, "O": 0})  # Convert labels to integers
+        self.labels["label"] = self.labels["label"].map({"X": 1, "O": 0})
 
     def __len__(self):
         return len(self.labels)
