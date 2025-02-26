@@ -9,7 +9,6 @@ from CNN import CNN
 from XODataset import XODataset
 
 
-# Training Function
 def train(model, dataloader, criterion, optimizer, device):
     model.train()
     total_loss, correct = 0, 0
@@ -25,7 +24,6 @@ def train(model, dataloader, criterion, optimizer, device):
     return total_loss / len(dataloader), correct / len(dataloader.dataset)
 
 
-# Validation Function
 def validate(model, dataloader, criterion, device):
     model.eval()
     total_loss, correct = 0, 0
@@ -39,7 +37,6 @@ def validate(model, dataloader, criterion, device):
     return total_loss / len(dataloader), correct / len(dataloader.dataset)
 
 
-# Function to Load Model and Test on Sample Images
 def visualize_predictions(model_path, test_dataset, device):
     model = CNN().to(device)
     model.load_state_dict(torch.load(model_path))
@@ -98,7 +95,7 @@ def main():
     test_loss, test_acc = validate(model, test_loader, criterion, device)
     print(f"Test Loss: {test_loss:.4f}, Test Accuracy: {test_acc:.4f}")
 
-    # Save the trained model
+    # Save the trained model later will be published to hugging face
     model_save_path = os.path.join("./data/model", "cnn_xo_classifier.pth")
     torch.save(model.state_dict(), model_save_path)
     print(f"Model saved at {model_save_path}")
