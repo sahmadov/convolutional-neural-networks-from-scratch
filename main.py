@@ -89,16 +89,16 @@ def main():
         train_loss, train_acc = train(model, train_loader, criterion, optimizer, device)
         val_loss, val_acc = validate(model, val_loader, criterion, device)
         print(
-            f"Epoch {epoch + 1}: Train Loss {train_loss:.4f}, Acc {train_acc:.4f}, Val Loss {val_loss:.4f}, Acc {val_acc:.4f}")
+            f"Iteration {epoch + 1}: Loss Training {train_loss:.5f}, Accuracy {train_acc:.5f}, Loss Validation {val_loss:.5f}, Accuracy {val_acc:.5f}")
 
     # Test the model
     test_loss, test_acc = validate(model, test_loader, criterion, device)
-    print(f"Test Loss: {test_loss:.4f}, Test Accuracy: {test_acc:.4f}")
+    print(f"Loss of Test: {test_loss:.5f}, Accuracy of Test : {test_acc:.5f}")
 
     # Save the trained model later will be published to hugging face
     model_save_path = os.path.join("./data/model", "cnn_xo_classifier.pth")
     torch.save(model.state_dict(), model_save_path)
-    print(f"Model saved at {model_save_path}")
+    print(f"Model was saved to {model_save_path}")
 
     # Load saved model and visualize predictions
     visualize_predictions(model_save_path, test_dataset, device)
