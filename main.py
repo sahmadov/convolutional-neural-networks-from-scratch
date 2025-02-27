@@ -40,7 +40,7 @@ def validate(model, dataloader, criterion, device):
 def visualize_predictions(model_path, test_dataset, device):
     model = CNN().to(device)
     model.load_state_dict(torch.load(model_path))
-    model.eval()  # Set model to evaluation mode
+    model.eval()
 
     fig, axes = plt.subplots(1, 5, figsize=(10, 2))
     for i, (image, label) in enumerate(test_dataset):
